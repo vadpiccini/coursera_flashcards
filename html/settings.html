@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coursera Notes Settings</title>
+    <link rel="stylesheet" href="../styles/settings.css"> <!-- Link to your CSS file for styling -->
+</head>
+<body>
+    <!-- Where you enter your API key -->
+    <div>
+      <label for="apiKey">OpenAI API Key:</label>
+      <input type="text" id="apiKey" name="apiKey">
+      <label for="modelSelect">Choose GPT Model:</label>
+      <select id="modelSelect">
+        <option value="text-davinci-003">GPT-3.5 (Davinci)</option>
+        <option value="gpt-3.5-turbo">GPT-3.5 Turbo</option>
+        <option value="gpt-4-turbo-preview"> GPT-4 Turbo Preview</option>
+        <!-- Add more models as needed -->
+      </select>
+      <button id="saveSettings">Save</button>
+    </div>
+    <div id="saveConfirmation" style="color: green; display: none;">Settings saved successfully!</div>
+    <script src="../scripts/settings.js"></script> 
+ 
+</body>
+</html>
