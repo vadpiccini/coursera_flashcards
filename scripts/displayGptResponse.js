@@ -1,6 +1,19 @@
 // displayGptResponse.js
 document.addEventListener('DOMContentLoaded', checkForData);
 
+function displayFlashcards(flashcardsRaw) {
+    // Process and display flashcards
+            const flashcardsList = document.getElementById('flashcardsContent');
+            flashcardsList.innerHTML = ''; // Clear placeholder text
+            const flashcards = flashcardsRaw.split("\n").filter(line => line.startsWith("Question:"));
+            flashcards.forEach(card => {
+                const [question, answer] = card.split(" | Answer: ");
+                const li = document.createElement('li');
+                li.textContent = `${question.replace("Question: ", "")} - ${answer}`;
+                flashcardsList.appendChild(li);
+            });
+}
+
 function checkForData() {
     chrome.storage.local.get(['gptResponse'], function(result) {
         if (result.gptResponse && result.gptResponse.choices && result.gptResponse.choices.length > 0) {
@@ -14,16 +27,8 @@ function checkForData() {
             // Update summary section
             document.getElementById('summaryContent').textContent = summary;
 
-            // Process and display flashcards
-            const flashcardsList = document.getElementById('flashcardsContent');
-            flashcardsList.innerHTML = ''; // Clear placeholder text
-            const flashcards = flashcardsRaw.split("\n").filter(line => line.startsWith("Question:"));
-            flashcards.forEach(card => {
-                const [question, answer] = card.split(" | Answer: ");
-                const li = document.createElement('li');
-                li.textContent = `${question.replace("Question: ", "")} - ${answer}`;
-                flashcardsList.appendChild(li);
-            });
+            // Display flashcards
+            displayFlashcards(flashcardsRaw);
 
             // Clear the stored data after displaying it
             chrome.storage.local.remove(['gptResponse']);
@@ -33,3 +38,4 @@ function checkForData() {
         }
     });
 }
+
