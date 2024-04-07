@@ -42,21 +42,26 @@ function exportFlashcardsToCSV() {
 function checkForData() {
     chrome.storage.local.get(['gptResponse'], function(result) {
         if (result.gptResponse && result.gptResponse.choices && result.gptResponse.choices.length > 0) {
-            const content = result.gptResponse.choices[0].message.content;
+            try {
+                const content = result.gptResponse.choices[0].message.content;
 
-            // Assuming the content structure is as expected, separate summary and flashcards
-            const parts = content.split("\n\nFlashcards:\n");
-            const summary = parts[0].replace("Summary:\n", "").trim();
-            flashcardsRaw = parts[1] ? parts[1].trim() : "";
+                // Assuming the content structure is as expected, separate summary and flashcards
+                const parts = content.split("\n\nFlashcards:\n");
+                const summary = parts[0].replace("Summary:\n", "").trim();
+                flashcardsRaw = parts[1] ? parts[1].trim() : "";
 
-            // Update summary section
-            document.getElementById('summaryContent').textContent = summary;
+                // Update summary section
+                document.getElementById('summaryContent').textContent = summary;
 
-            // Display flashcards
-            displayFlashcards();
-
-            // Clear the stored data after displaying it
-            chrome.storage.local.remove(['gptResponse']);
+                // Display flashcards
+                displayFlashcards(); // Assuming displayFlashcards uses the global flashcardsRaw variable
+            } catch (error) {
+                console.error('An error occurred:', error);
+                // Handle the error appropriately, maybe show a message to the user
+            } finally {
+                // Ensure the stored data is always removed after processing
+                chrome.storage.local.remove(['gptResponse']);
+            }
         } else {
             // If no data is found, or it's not in the expected format, keep checking
             setTimeout(checkForData, 1000); // Check again after 1 second
