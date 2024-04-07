@@ -55,6 +55,10 @@ function checkForData() {
 
                 // Display flashcards
                 displayFlashcards(); // Assuming displayFlashcards uses the global flashcardsRaw variable
+                
+                // Show the export button after flashcards have been displayed
+                document.getElementById('exportFlashcardsBtn').style.display = 'block'; 
+
             } catch (error) {
                 console.error('An error occurred:', error);
                 // Handle the error appropriately, maybe show a message to the user
