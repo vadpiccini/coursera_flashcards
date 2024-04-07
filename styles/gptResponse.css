@@ -57,6 +57,7 @@ button#exportFlashcardsBtn {
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    display: none; /* Button is initially hidden */
 }
 
 button#exportFlashcardsBtn:hover {
