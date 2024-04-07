@@ -1,7 +1,12 @@
 // displayGptResponse.js
-document.addEventListener('DOMContentLoaded', checkForData);
+document.addEventListener('DOMContentLoaded', () => {
+    checkForData();
+    document.getElementById('exportFlashcardsBtn').addEventListener('click', exportFlashcardsToCSV);
+});
 
-function displayFlashcards(flashcardsRaw) { // Now accepts flashcardsRaw as a parameter
+let flashcardsRaw = '';
+
+function displayFlashcards() { // Now accepts flashcardsRaw as a parameter
     const flashcardsList = document.getElementById('flashcardsContent');
     flashcardsList.innerHTML = ''; // Clear placeholder text
     const flashcards = flashcardsRaw.split("\n").filter(line => line.startsWith("Question:"));
@@ -14,6 +19,26 @@ function displayFlashcards(flashcardsRaw) { // Now accepts flashcardsRaw as a pa
         flashcardsList.appendChild(flashcardItem);
     });
 }
+
+function exportFlashcardsToCSV() {
+    // Convert flashcards to CSV format
+    const flashcards = flashcardsRaw.split("\n").filter(line => line.startsWith("Question:"));
+    let csvContent = "data:text/csv;charset=utf-8,Question,Answer\n";
+    flashcards.forEach(card => {
+        const [question, answer] = card.split(" | Answer: ");
+        csvContent += `"${question.replace("Question: ", "")}","${answer}"\n`;
+    });
+
+    // Trigger download
+    const encodedUri = encodeURI(csvContent);
+    const link = document.createElement("a");
+    link.setAttribute("href", encodedUri);
+    link.setAttribute("download", "flashcards.csv");
+    document.body.appendChild(link); // Required for FF
+    link.click();
+    document.body.removeChild(link); // Clean up
+}
+
 function checkForData() {
     chrome.storage.local.get(['gptResponse'], function(result) {
         if (result.gptResponse && result.gptResponse.choices && result.gptResponse.choices.length > 0) {
@@ -22,13 +47,13 @@ function checkForData() {
             // Assuming the content structure is as expected, separate summary and flashcards
             const parts = content.split("\n\nFlashcards:\n");
             const summary = parts[0].replace("Summary:\n", "").trim();
-            const flashcardsRaw = parts[1] ? parts[1].trim() : "";
+            flashcardsRaw = parts[1] ? parts[1].trim() : "";
 
             // Update summary section
             document.getElementById('summaryContent').textContent = summary;
 
             // Display flashcards
-            displayFlashcards(flashcardsRaw);
+            displayFlashcards();
 
             // Clear the stored data after displaying it
             chrome.storage.local.remove(['gptResponse']);
