@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Coursera Flashcards",
   "version": "1.1",
-  "description": "Extracts notes from Coursera videos, summarizes them and creates flashcards using GPT.",
+  "description": "Extracts notes from Coursera videos, summarizes them and creates flashcards using GPT. Flashcards can be easily imported into Anki.",
   "permissions": ["activeTab", "storage", "scripting", "tabs"],
   "background": {
     "service_worker": "scripts/background.js"
