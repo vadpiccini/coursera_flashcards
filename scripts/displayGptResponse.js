@@ -23,7 +23,7 @@ function displayFlashcards() { // Now accepts flashcardsRaw as a parameter
 function exportFlashcardsToCSV() {
     // Convert flashcards to CSV format
     const flashcards = flashcardsRaw.split("\n").filter(line => line.startsWith("Question:"));
-    let csvContent = "data:text/csv;charset=utf-8,Question,Answer\n";
+    let csvContent = "data:text/csv;charset=utf-8,";
     flashcards.forEach(card => {
         const [question, answer] = card.split(" | Answer: ");
         csvContent += `"${question.replace("Question: ", "")}","${answer}"\n`;
