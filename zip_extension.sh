@@ -10,6 +10,7 @@ EXCLUDE_PATTERNS=(
   "*.md"
   "LICENSE"
   ".gitignore"
+  "_config.yml"
 )
 
 # Start building the zip command with exclusions
