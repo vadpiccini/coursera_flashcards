@@ -17,5 +17,5 @@ The extension may provide links to other websites. We do not control these exter
 We may update this privacy policy occasionally. Changes will be posted on this page, along with the update date.
 
 ## Contact
-For any questions regarding this policy or the extension, please contact us through our [GitHub issue page](https://github.com/vadpiccini/coursera_notes/issues).
+For any questions regarding this policy or the extension, please contact us through our [GitHub issue page](https://github.com/vadpiccini/coursera_flashcards/issues).
 
