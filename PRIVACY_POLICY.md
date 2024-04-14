@@ -1,3 +1,6 @@
+---
+---
+
 # Privacy Policy for Coursera Flashcards
 
 ## Introduction
