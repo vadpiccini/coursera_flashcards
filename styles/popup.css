@@ -21,6 +21,12 @@ button:hover {
     background-color: #0056b3;
 }
 
+button:disabled {
+    color: #ccc;
+    background-color: #f4f4f4;
+    border: 1px solid #ccc;
+}
+
 #status-message {
     margin-top: 20px;
 }

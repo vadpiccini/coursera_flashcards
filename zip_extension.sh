@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Define the name of the output zip file
-OUTPUT_ZIP="CourseraNotes.zip"
+OUTPUT_ZIP="CourseraFlashcards.zip"
 
 # List of patterns to exclude from the zip
 EXCLUDE_PATTERNS=(
