@@ -7,7 +7,7 @@ OUTPUT_ZIP="CourseraNotes.zip"
 EXCLUDE_PATTERNS=(
   "*.git*"
   "*.DS_Store*"
-  "README.md"
+  "*.md"
   "LICENSE"
   ".gitignore"
 )
