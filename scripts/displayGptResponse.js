@@ -1,4 +1,3 @@
-// displayGptResponse.js
 document.addEventListener('DOMContentLoaded', () => {
     checkForData();
     document.getElementById('exportFlashcardsBtn').addEventListener('click', exportFlashcardsToCSV);
@@ -6,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 let flashcardsRaw = '';
 
-function displayFlashcards() { // Now accepts flashcardsRaw as a parameter
+function displayFlashcards() {
     const flashcardsList = document.getElementById('flashcardsContent');
     flashcardsList.innerHTML = ''; // Clear placeholder text
     const flashcards = flashcardsRaw.split("\n").filter(line => line.startsWith("Question:"));
@@ -14,14 +13,13 @@ function displayFlashcards() { // Now accepts flashcardsRaw as a parameter
         const [question, answer] = card.split(" | Answer: ");
         const flashcardItem = document.createElement('li');
         flashcardItem.className = 'flashcard'; // Add class for styling
-        // Ensuring that we remove "Question: " prefix correctly
         flashcardItem.innerHTML = `<strong>Q:</strong> ${question.substring("Question: ".length)}<br><strong>A:</strong> ${answer}`;
         flashcardsList.appendChild(flashcardItem);
     });
+    document.getElementById('exportFlashcardsBtn').style.display = 'block';
 }
 
 function exportFlashcardsToCSV() {
-    // Convert flashcards to CSV format
     const flashcards = flashcardsRaw.split("\n").filter(line => line.startsWith("Question:"));
     let csvContent = "data:text/csv;charset=utf-8,";
     flashcards.forEach(card => {
@@ -29,47 +27,61 @@ function exportFlashcardsToCSV() {
         csvContent += `"${question.replace("Question: ", "")}","${answer}"\n`;
     });
 
-    // Trigger download
     const encodedUri = encodeURI(csvContent);
     const link = document.createElement("a");
     link.setAttribute("href", encodedUri);
     link.setAttribute("download", "flashcards.csv");
-    document.body.appendChild(link); // Required for FF
+    document.body.appendChild(link);
     link.click();
-    document.body.removeChild(link); // Clean up
+    document.body.removeChild(link);
 }
 
 function checkForData() {
-    chrome.storage.local.get(['gptResponse'], function(result) {
-        if (result.gptResponse && result.gptResponse.choices && result.gptResponse.choices.length > 0) {
-            try {
-                const content = result.gptResponse.choices[0].message.content;
+    let retries = 0;
+    const retryInterval = 1000; // 1 second
+    const maxRetries = 120; // 2 minutes
 
-                // Assuming the content structure is as expected, separate summary and flashcards
-                const parts = content.split("\n\nFlashcards:\n");
-                const summary = parts[0].replace("Summary:\n", "").trim();
-                flashcardsRaw = parts[1] ? parts[1].trim() : "";
+    function attemptFetch() {
+        chrome.storage.local.get(['gptResponse'], function(result) {
+            if (result.gptResponse && result.gptResponse.choices && result.gptResponse.choices.length > 0) {
+                const responseData = result.gptResponse.choices[0];
+                if (responseData.message) {
+                    try {
+                        const content = responseData.message.content;
+                        const parts = content.split("\n\nFlashcards:\n");
+                        const summary = parts[0].replace("Summary:\n", "").trim();
+                        flashcardsRaw = parts[1] ? parts[1].trim() : "";
 
-                // Update summary section
-                document.getElementById('summaryContent').textContent = summary;
-
-                // Display flashcards
-                displayFlashcards(); // Assuming displayFlashcards uses the global flashcardsRaw variable
-                
-                // Show the export button after flashcards have been displayed
-                document.getElementById('exportFlashcardsBtn').style.display = 'block'; 
-
-            } catch (error) {
-                console.error('An error occurred:', error);
-                // Handle the error appropriately, maybe show a message to the user
-            } finally {
-                // Ensure the stored data is always removed after processing
-                chrome.storage.local.remove(['gptResponse']);
+                        document.getElementById('summaryContent').textContent = summary;
+                        document.getElementById('summaryContent').style.color = 'black'; // Reset text color
+                        displayFlashcards();
+                    } catch (error) {
+                        console.error('An error occurred:', error);
+                        document.getElementById('summaryContent').textContent = 'An error occurred: ' + error.message;
+                        document.getElementById('summaryContent').style.color = 'red';
+                        document.getElementById('flashcardsSection').style.display = 'none';
+                        document.getElementById('exportFlashcardsBtn').style.display = 'none';
+                    } finally {
+                        chrome.storage.local.remove(['gptResponse']);
+                    }
+                } else if (responseData.error) {
+                    document.getElementById('summaryContent').textContent = responseData.error.message;
+                    document.getElementById('summaryContent').style.color = 'red';
+                    document.getElementById('flashcardsSection').style.display = 'none';
+                    document.getElementById('exportFlashcardsBtn').style.display = 'none';
+                }
+            } else if (retries < maxRetries) {
+                retries++;
+                setTimeout(attemptFetch, retryInterval);
+            } else {
+                document.getElementById('summaryContent').textContent = 'Timeout: No response after 2 minutes. Please try again.';
+                document.getElementById('summaryContent').style.color = 'red';
+                document.getElementById('flashcardsSection').style.display = 'none';
+                document.getElementById('exportFlashcardsBtn').style.display = 'none';
             }
-        } else {
-            // If no data is found, or it's not in the expected format, keep checking
-            setTimeout(checkForData, 1000); // Check again after 1 second
-        }
-    });
+        });
+    }
+
+    attemptFetch();
 }
 

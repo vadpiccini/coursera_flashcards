@@ -3,10 +3,10 @@ document.getElementById('saveSettings').addEventListener('click', async function
     const model = document.getElementById('modelSelect').value;
 
     // Validate API key format using a regular expression
-    if (!isValidApiKeyFormat(apiKey)) {
-        displayMessage('Invalid API key format.', 'error');
-        return;
-    }
+//    if (!isValidApiKeyFormat(apiKey)) {
+//        displayMessage('Invalid API key format.', 'error');
+//        return;
+//    }
 
     // Check API key authorization by making a test API call
     if (!await checkApiKeyAuthorization(apiKey)) {
@@ -21,10 +21,11 @@ document.getElementById('saveSettings').addEventListener('click', async function
     });
 });
 
-function isValidApiKeyFormat(apiKey) {
+// TODO: FIX THIS
+// function isValidApiKeyFormat(apiKey) {
     // Example regex, adjust according to your actual API key format requirements
-    return /^sk-[a-zA-Z0-9]{32,}$/.test(apiKey);
-}
+//    return /^sk-[a-zA-Z0-9]{32,}$/.test(apiKey);
+//}
 
 async function checkApiKeyAuthorization(apiKey) {
     try {

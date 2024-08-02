@@ -17,7 +17,6 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
                             console.log(`OpenAI response: `, data);
                             // Store the GPT response data temporarily
                             chrome.storage.local.set({gptResponse: data}, () => {
-                                // Optionally, you can focus on the tab where the response will be displayed
                                 chrome.tabs.update(newTab.id, {active: true});
                             });
                         });
