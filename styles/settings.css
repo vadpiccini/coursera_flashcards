@@ -23,7 +23,7 @@ input[type="text"],
 select {
     width: 100%;
     padding: 10px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
@@ -62,3 +62,27 @@ button:hover {
     color: green;
 }
 
+.info-message {
+    font-size: 12px;
+    color: grey;
+    margin-top: -20px; /* Adjust the margin-top to fine-tune the spacing */
+    margin-bottom: -10px; /* Ensure there is spacing between info message and button */
+    display: flex;
+    align-items: center;
+    padding-left: 0; /* Remove any padding */
+    box-shadow: none;
+}
+
+.info-message i {
+    margin-right: 5px;
+    color: grey;
+}
+
+.info-message a {
+    color: grey;
+    text-decoration: none;
+}
+
+.info-message a:hover {
+    text-decoration: underline;
+}

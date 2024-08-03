@@ -4,12 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Coursera Notes Settings</title>
-    <link rel="stylesheet" href="../styles/settings.css"> <!-- Link to your CSS file for styling -->
+    <link rel="stylesheet" href="../styles/settings.css"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
     <!-- Where you enter your API key -->
     <div>
-      <label for="apiKey">OpenAI API Key:</label>
+      <label for="apiKey">
+          OpenAI API Key:
+      </label>
+      <div class="info-message">
+          <i class="fas fa-info-circle"></i>
+          <a href="https://help.openai.com/en/articles/4936850-where-do-i-find-my-openai-api-key" target="_blank">
+              Where do I find my OpenAI API key?
+          </a>
+      </div>
       <input type="text" id="apiKey" name="apiKey" placeholder="Enter your OpenAI API key">
       <button id="saveAPIKey"> Save </button>
     </div>
