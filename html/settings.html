@@ -8,32 +8,31 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
+    <h1>Settings</h1>
+
     <!-- Where you enter your API key -->
-    <div>
-      <label for="apiKey">
-          OpenAI API Key:
-      </label>
-      <div class="info-message">
-          <i class="fas fa-info-circle"></i>
-          <a href="https://help.openai.com/en/articles/4936850-where-do-i-find-my-openai-api-key" target="_blank">
-              Where do I find my OpenAI API key?
-          </a>
-      </div>
-      <input type="text" id="apiKey" name="apiKey" placeholder="Enter your OpenAI API key">
-      <button id="saveAPIKey"> Save </button>
+    <div class="container">
+    <label for="apiKey">OpenAI API Key:</label>
+    <div class="info-message">
+        <i class="fas fa-info-circle"></i>
+        <a href="https://help.openai.com/en/articles/4936850-where-do-i-find-my-openai-api-key" target="_blank">Where do I find my API key?</a>
+    </div>
+    <input type="text" id="apiKey" name="apiKey" placeholder="Enter your OpenAI API key">
+    <button id="saveAPIKey"> Save </button>
     </div>
     <div id="saveConfirmationAPI" style="color: green; display: none;">Settings saved successfully!</div>
     <div id="validationMessageAPI" style="color: red; display: none;"></div>
-    <div>
-      <label for="modelSelect">Choose GPT Model:</label>
-      <select id="modelSelect">
-        <option value="gpt-4o">GPT-4o</option>
-        <option value="gpt-4o-mini">GPT-4o mini</option>
-        <option value="gpt-4-turbo">GPT-4 Turbo</option>
-        <option value="gpt-4">GPT-4</option>
-        <!-- Add more models as needed -->
-      </select>
-      <button id="saveModel">Save</button>
+
+    <div class="container">
+        <label for="modelSelect">Choose GPT Model:</label>
+        <select id="modelSelect">
+            <option value="gpt-4o">GPT-4o</option>
+            <option value="gpt-4o-mini">GPT-4o mini</option>
+            <option value="gpt-4-turbo">GPT-4 Turbo</option>
+            <option value="gpt-4">GPT-4</option>
+            <!-- Add more models as needed -->
+        </select>
+        <button id="saveModel">Save</button>
     </div>
     <div id="saveConfirmationModel" style="color: green; display: none;">Settings saved successfully!</div>
     <div id="validationMessageModel" style="color: red; display: none;"></div>
