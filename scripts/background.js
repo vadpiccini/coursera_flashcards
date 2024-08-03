@@ -41,7 +41,7 @@ function getStoredSettings(callback) {
     });
 }
 
-const system_prompt = `This is a transcript from a Coursera video lesson. Please provide a brief summary on the topic and generate flashcards for key concepts. Format your response as follows:
+const system_prompt = `This is a transcript from a Coursera video lesson. Please provide a brief summary on the topic and generate flashcards for key concepts. Format your response exactly as follows:
  Summary:
  [Your summary here.]
  
