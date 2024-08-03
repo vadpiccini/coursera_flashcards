@@ -11,17 +11,23 @@
     <div>
       <label for="apiKey">OpenAI API Key:</label>
       <input type="text" id="apiKey" name="apiKey" placeholder="Enter your OpenAI API key">
+      <button id="saveAPIKey"> Save </button>
+    </div>
+    <div id="saveConfirmationAPI" style="color: green; display: none;">Settings saved successfully!</div>
+    <div id="validationMessageAPI" style="color: red; display: none;"></div>
+    <div>
       <label for="modelSelect">Choose GPT Model:</label>
       <select id="modelSelect">
-        <option value="text-davinci-003">GPT-3.5 (Davinci)</option>
-        <option value="gpt-3.5-turbo">GPT-3.5 Turbo</option>
-        <option value="gpt-4-turbo-preview">GPT-4 Turbo Preview</option>
+        <option value="gpt-4o">GPT-4o</option>
+        <option value="gpt-4o-mini">GPT-4o mini</option>
+        <option value="gpt-4-turbo">GPT-4 Turbo</option>
+        <option value="gpt-4">GPT-4</option>
         <!-- Add more models as needed -->
       </select>
-      <button id="saveSettings">Save</button>
+      <button id="saveModel">Save</button>
     </div>
-    <div id="saveConfirmation" style="color: green; display: none;">Settings saved successfully!</div>
-    <div id="validationMessage" style="color: red; display: none;"></div>
+    <div id="saveConfirmationModel" style="color: green; display: none;">Settings saved successfully!</div>
+    <div id="validationMessageModel" style="color: red; display: none;"></div>
     <script src="../scripts/settings.js"></script>
 </body>
 </html>

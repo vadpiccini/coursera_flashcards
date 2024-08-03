@@ -1,6 +1,6 @@
-document.getElementById('saveSettings').addEventListener('click', async function() {
+// Register API key
+document.getElementById('saveAPIKey').addEventListener('click', async function() {
     const apiKey = document.getElementById('apiKey').value;
-    const model = document.getElementById('modelSelect').value;
 
     // Validate API key format using a regular expression
 //    if (!isValidApiKeyFormat(apiKey)) {
@@ -10,14 +10,25 @@ document.getElementById('saveSettings').addEventListener('click', async function
 
     // Check API key authorization by making a test API call
     if (!await checkApiKeyAuthorization(apiKey)) {
-        displayMessage('Unauthorized API key.', 'error');
+        displayMessage('validationMessageAPI','Unauthorized API key.', 'error');
         return;
     }
 
     // If the API key is valid and authorized, save the settings
-    console.log(`API Key and model found: ${apiKey}, ${model}`);
-    chrome.storage.local.set({ apiKey, model }, () => {
-        displayMessage('Settings saved successfully.', 'success');
+    console.log(`API Key found: ${apiKey}`);
+    chrome.storage.local.set({apiKey}, () => {
+        displayMessage('validationMessageAPI', 'API key saved successfully.', 'success');
+    });
+});
+
+// Change model
+document.getElementById('saveModel').addEventListener('click', async function() {
+    const model = document.getElementById('modelSelect').value;
+
+    // Save model settings
+    console.log(`Model found: ${model}`);
+    chrome.storage.local.set({model}, () => {
+        displayMessage('validationMessageModel', 'Model preference saved successfully.', 'success');
     });
 });
 
@@ -42,8 +53,8 @@ async function checkApiKeyAuthorization(apiKey) {
     }
 }
 
-function displayMessage(message, type) {
-    const messageElement = document.getElementById('validationMessage');
+function displayMessage(element_id, message, type) {
+    const messageElement = document.getElementById(element_id);
     messageElement.textContent = message;
     messageElement.style.display = 'block';
     messageElement.style.color = type === 'error' ? 'red' : 'green';
