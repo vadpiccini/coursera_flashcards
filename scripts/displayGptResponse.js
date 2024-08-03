@@ -47,6 +47,8 @@ function checkForData() {
                 const responseData = result.gptResponse.choices[0];
                 if (responseData.message) {
                     try {
+                        document.getElementById('summaryLoading').remove();
+                        document.getElementById('flashcardsLoading').remove();
                         const content = responseData.message.content;
                         const parts = content.split("\n\nFlashcards:\n");
                         const summary = parts[0].replace("Summary:\n", "").trim();

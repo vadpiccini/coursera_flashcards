@@ -10,11 +10,13 @@
     <h1>GPT Response</h1>
     <div id="summarySection">
         <h2>Summary</h2>
-        <p id="summaryContent">Loading summary...</p>
+        <p class="loading" id="summaryLoading">Loading summary…</p>
+        <p id="summaryContent"></p>
     </div>
     <div id="flashcardsSection">
         <h2>Flashcards</h2>
-        <ul id="flashcardsContent">Loading flashcards...</ul>
+        <p class="loading" id="flashcardsLoading">Loading flashcards…</p>
+        <ul id="flashcardsContent"></ul>
     </div>
     <button id="exportFlashcardsBtn">Export Flashcards to CSV</button>
     <script src="../scripts/displayGptResponse.js"></script>
