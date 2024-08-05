@@ -17,7 +17,7 @@ A Chrome Extension to generate notes and flashcards from Coursera video pages us
 2. **Enter OpenAI API Key:**
     - You will need an OpenAI API key to use the extension. Follow the instructions [here](https://help.openai.com/en/articles/4936850-where-do-i-find-my-openai-api-key) to get your API key.
     - Enter the API key in the settings menu of the extension. Note that the API key is stored in your browser's local storage and nowhere else.
-    - ⚠️ Note: You will use you openAI credits so make sure to have some in your account or the extension will not work.
+    - :warning: Note: You will use you openAI credits so make sure to have some in your account or the extension will not work.
 
 3. **(Optional) Select an OpenAI Model:**
     - You may select an OpenAI model from a dropdown menu in the settings. This currently defaults to GPT4-o.
