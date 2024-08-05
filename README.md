@@ -19,7 +19,7 @@ A Chrome Extension to generate notes and flashcards from Coursera video pages us
     - Enter the API key in the settings menu of the extension. Note that the API key is stored in your browser's local storage and nowhere else.
 
 3. **(Optional) Select an OpenAI Model:**
-    - Optionally, you can select an OpenAI model from a dropdown menu in the settings. This currently defaults to GPT4-o.
+    - You may select an OpenAI model from a dropdown menu in the settings. This currently defaults to GPT4-o.
 
 4. **Using the Extension:**
     - When on a Coursera lecture page, click the 'Extract Notes' button.
