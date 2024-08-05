@@ -50,10 +50,6 @@ Found Coursera Flashcards useful? Have suggestions or just want to chat about le
 
 Feel free to email me at: coursera_flashcards@gmx.com
 
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
 ## Contributing
 
 1. Fork the repository.
