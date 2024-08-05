@@ -1,6 +1,8 @@
 // background.js
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     if (message.action === "extractNotes") {
+        // Remove old gptResponse, if any was accidentally still there
+        chrome.storage.local.remove(['gptResponse']);
         // Tell the content script to extract notes
         chrome.tabs.query({active: true}, function(tabs) {
             chrome.tabs.sendMessage(tabs[0].id, {action: "extractNotesFromCoursera"}, function(response) {

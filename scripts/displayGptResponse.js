@@ -53,10 +53,7 @@ function checkForData() {
     const maxRetries = 120; // 2 minutes
 
     function attemptFetch() {
-        // Clear gptResponse storage variable before fetching just in case
-        chrome.storage.local.remove(['gptResponse']); 
-
-        chrome.storage.local.get(['gptResponse'], function(result) {
+            chrome.storage.local.get(['gptResponse'], function(result) {
             if (result.gptResponse && result.gptResponse.choices && result.gptResponse.choices.length > 0) {
                 const responseData = result.gptResponse.choices[0];
                 if (responseData.message) {
@@ -81,7 +78,7 @@ function checkForData() {
                         chrome.storage.local.remove(['gptResponse']);
                     }
                 } else if (responseData.error) {
-                    document.getElementById('summaryContent').textContent = responseData.error.message;
+                    document.getElementById('summaryContekt').textContent = responseData.error.message;
                     document.getElementById('summaryContent').style.color = 'red';
                     document.getElementById('flashcardsSection').style.display = 'none';
                     document.getElementById('exportFlashcardsBtn').style.display = 'none';
