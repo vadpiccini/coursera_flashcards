@@ -1,4 +1,15 @@
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', function() {
+    const modelInfo = document.getElementById('modelInfo');
+
+    // Retrieve the stored model value and set the model info
+    chrome.storage.local.get('model', function(result) {
+        if (result.model) {
+            modelInfo.textContent = `Using model: ${result.model}`;
+        } else {
+            modelInfo.textContent = `Using model: gpt-4o`; // Default model
+        }
+    });
+
     checkForData();
     document.getElementById('exportFlashcardsBtn').addEventListener('click', exportFlashcardsToCSV);
 });
@@ -42,6 +53,9 @@ function checkForData() {
     const maxRetries = 120; // 2 minutes
 
     function attemptFetch() {
+        // Clear gptResponse storage variable before fetching just in case
+        chrome.storage.local.remove(['gptResponse']); 
+
         chrome.storage.local.get(['gptResponse'], function(result) {
             if (result.gptResponse && result.gptResponse.choices && result.gptResponse.choices.length > 0) {
                 const responseData = result.gptResponse.choices[0];
@@ -71,6 +85,7 @@ function checkForData() {
                     document.getElementById('summaryContent').style.color = 'red';
                     document.getElementById('flashcardsSection').style.display = 'none';
                     document.getElementById('exportFlashcardsBtn').style.display = 'none';
+                    chrome.storage.local.remove(['gptResponse']);
                 }
             } else if (retries < maxRetries) {
                 retries++;
@@ -80,6 +95,7 @@ function checkForData() {
                 document.getElementById('summaryContent').style.color = 'red';
                 document.getElementById('flashcardsSection').style.display = 'none';
                 document.getElementById('exportFlashcardsBtn').style.display = 'none';
+                chrome.storage.local.remove(['gptResponse']);
             }
         });
     }
