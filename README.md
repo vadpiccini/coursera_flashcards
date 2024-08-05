@@ -12,7 +12,7 @@ A Chrome Extension to generate notes and flashcards from Coursera video pages us
 
 ## 🚀 Getting Started
 
-1. **Install the Extension:** Download and install the Coursera Flashcards Chrome extension from the [Chrome Web Store](#).
+1. **Install the Extension:** Download and install the Coursera Flashcards Chrome extension from the [Chrome Web Store](https://chromewebstore.google.com/detail/coursera-flashcards/eaplkplofnolbedgfagghphdngkcplea?hl=en-US).
 
 2. **Enter OpenAI API Key:**
     - You will need an OpenAI API key to use the extension. Follow the instructions [here](https://help.openai.com/en/articles/4936850-where-do-i-find-my-openai-api-key) to get your API key.
