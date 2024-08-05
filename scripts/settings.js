@@ -1,3 +1,16 @@
+document.addEventListener('DOMContentLoaded', function() {
+    const modelSelect = document.getElementById('modelSelect');
+
+    // Retrieve the stored model value and set the select element value
+    chrome.storage.local.get('model', function(result) {
+        if (result.model) {
+            modelSelect.value = result.model;
+        } else {
+            modelSelect.value = 'gpt-4o'; // Default value
+        }
+    });
+});
+
 // Register API key
 document.getElementById('saveAPIKey').addEventListener('click', async function() {
     const apiKey = document.getElementById('apiKey').value;
@@ -38,6 +51,7 @@ document.getElementById('saveModel').addEventListener('click', async function() 
 //    return /^sk-[a-zA-Z0-9]{32,}$/.test(apiKey);
 //}
 
+
 async function checkApiKeyAuthorization(apiKey) {
     try {
         const response = await fetch('https://api.openai.com/v1/engines', {
@@ -59,4 +73,3 @@ function displayMessage(element_id, message, type) {
     messageElement.style.display = 'block';
     messageElement.style.color = type === 'error' ? 'red' : 'green';
 }
-

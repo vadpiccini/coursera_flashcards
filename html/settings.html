@@ -22,8 +22,8 @@
     <input type="text" id="apiKey" name="apiKey" placeholder="Enter your OpenAI API key">
     <button id="saveAPIKey"> Save </button>
     </div>
-    <div id="saveConfirmationAPI" style="color: green; display: none;">Settings saved successfully!</div>
-    <div id="validationMessageAPI" style="color: red; display: none;"></div>
+    <div class="success" id="saveConfirmationAPI"> Settings saved successfully!</div>
+    <div class="error" id="validationMessageAPI"></div>
 
     <div class="container">
         <label for="modelSelect">Choose GPT Model:</label>
@@ -34,7 +34,7 @@
             </a>
         </div>
         <select id="modelSelect">
-            <option value="gpt-4o">GPT-4o</option>
+            <option value="gpt-4o">GPT-4o (default)</option>
             <option value="gpt-4o-mini">GPT-4o mini</option>
             <option value="gpt-4-turbo">GPT-4 Turbo</option>
             <option value="gpt-4">GPT-4</option>
@@ -42,8 +42,8 @@
         </select>
         <button id="saveModel">Save</button>
     </div>
-    <div id="saveConfirmationModel" style="color: green; display: none;">Settings saved successfully!</div>
-    <div id="validationMessageModel" style="color: red; display: none;"></div>
+    <div class="success" id="saveConfirmationModel"> Settings saved successfully!</div>
+    <div class="error" id="validationMessageModel"></div>
     <script src="../scripts/settings.js"></script>
 </body>
 </html>

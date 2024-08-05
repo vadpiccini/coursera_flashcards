@@ -33,13 +33,18 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 
 function getStoredSettings(callback) {
     chrome.storage.local.get(['apiKey', 'model'], (result) => {
-        if (result.apiKey && result.model) {
-            callback(result);
+        const defaultModel = 'gpt-4o'; 
+        if (result.apiKey) {
+            callback({
+                apiKey: result.apiKey,
+                model: result.model || defaultModel // Use default model if not set
+            });
         } else {
-            console.error('API Key or model not set.');
+            console.error('API Key not set.');
         }
     });
 }
+
 
 const system_prompt = `This is a transcript from a Coursera video lesson. Please provide a brief summary on the topic and generate flashcards for key concepts. Format your response exactly as follows:
  Summary:

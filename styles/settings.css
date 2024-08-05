@@ -68,12 +68,14 @@ button:hover {
     }
 }
 
-#error {
+.error {
     color: red;
+    display: none;
 }
 
-#success {
+.success {
     color: green;
+    display: none;
 }
 
 .info-message {
