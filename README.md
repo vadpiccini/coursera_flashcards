@@ -1,6 +1,6 @@
 # 📚 Coursera Flashcards
 
-A Chrome Extension to generate notes and flashcards from Coursera video pages using OpenAI 
+A Chrome Extension to generate notes and flashcards from Coursera video pages using OpenAI.
 
 **Handcrafted by a fellow learner, this Chrome extension is my personal contribution to making our learning journey on Coursera a little easier.**
 
