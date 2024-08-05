@@ -15,6 +15,9 @@ button {
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    display: block;  /* Ensures each button takes up its own line */
+    width: 100%;     /* Optional: Makes buttons take full width */
+    margin: 10px 0;  /* Adds space between buttons */
 }
 
 button:hover {
@@ -25,8 +28,16 @@ button:disabled {
     color: #ccc;
     background-color: #f4f4f4;
     border: 1px solid #ccc;
+    cursor: not-allowed;
 }
 
 #status-message {
-    margin-top: 20px;
+    margin-top: 10px;  
+    min-height: 20px;  /* Ensure it takes some space even when empty */
+    color: red;
 }
+
+.hidden {
+    display: none;
+}
+

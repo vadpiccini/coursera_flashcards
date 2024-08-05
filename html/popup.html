@@ -4,19 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Coursera Notes Popup</title>
-    <link rel="stylesheet" href="../styles/popup.css"> 
+    <link rel="stylesheet" href="../styles/popup.css">
 </head>
 <body>
     <div id="popup-content">
         <h1>Coursera Notes</h1>
         <button id="extract-notes" disabled>Extract Notes</button>
-        <div id="status-message"></div>
-        <p id="api-key-warning" style="display:none; color: red;">
-            Please set the API key in settings. Learn how to get your API key <a href="https://help.openai.com/en/articles/4936850-where-do-i-find-my-openai-api-key" target="_blank">here</a>.
-        </p>
+        <div id="status-message" class="hidden"></div> <!-- Error message placeholder -->
         <button id="openSettings">Settings</button>
     </div>
-    <script src="../scripts/popup.js"></script> 
+    <script src="../scripts/popup.js"></script>
 </body>
 </html>
 
